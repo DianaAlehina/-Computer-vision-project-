@@ -170,8 +170,9 @@ coords_list = np.array(coords_list)
 indices = radius_list.argsort()
 radius_list = radius_list[indices[::1]]
 coords_list = coords_list[indices[::1]]
-print(radius_list)
+print(f"Отсортированные площади: {radius_list}")
 
+# Находим наибольшую разницу между областями
 border_val_id = np.argmax(np.diff(radius_list)) + 1
 output_image = image.copy()
 color = (0, 255, 0)
@@ -179,7 +180,7 @@ color = (0, 255, 0)
 for i, r in enumerate(radius_list):
     (x, y) = coords_list[i]
     if i == border_val_id:
-        color = (255, 0, 0)
+        color = (0, 0, 255)
     cv2.circle(output_image, (int(x), int(y)), int(r), color, 2)
     # cv2.putText(output_image, f"#{i + 1}", (int(x) - 10, int(y)),
     #            cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 0, 255), 0)
