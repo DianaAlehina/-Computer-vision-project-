@@ -15,7 +15,7 @@ def showimg4(img1, img2, img3, img4):
     plt.subplot(2, 2, 3)
     plt.imshow(img3, cmap='gray')
     plt.axis('off')
-    plt.title('Image grey')
+    plt.title('Image gray')
     plt.subplot(2, 2, 4)
     plt.imshow(img4, cmap='gray')
     plt.axis('off')
@@ -33,11 +33,11 @@ mask_image = cv2.erode(image, hole_mask)
 mask_image = cv2.dilate(mask_image, hole_mask)
 
 # Переводим изображение mask_image в полутоновое изображение
-image_grey = cv2.cvtColor(mask_image, cv2.COLOR_BGR2GRAY)
+image_gray = cv2.cvtColor(mask_image, cv2.COLOR_BGR2GRAY)
 
 # Применяем бинаризацию по Отсу к полутоновому изображению
-_, bin_image_grey = cv2.threshold(image_grey, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-showimg4(image, mask_image, image_grey, bin_image_grey)
+_, bin_image_grey = cv2.threshold(image_gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+showimg4(image, mask_image, image_gray, bin_image_grey)
 
 # Находим контуры
 contours, hierarchy = cv2.findContours(bin_image_grey, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
